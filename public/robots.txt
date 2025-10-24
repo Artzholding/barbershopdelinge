@@ -1,0 +1,10 @@
+# robots.txt voor Barbershop De Linge Elst
+User-agent: *
+Allow: /
+Disallow: /gallery-admin
+
+# Sitemap locatie
+Sitemap: https://barbershopdelinge.nl/sitemap.xml
+
+# Crawl-delay voor beleefde bots
+Crawl-delay: 1
