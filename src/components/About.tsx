@@ -10,7 +10,7 @@ export default function About({ fullPage }: AboutProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="order-2 md:order-1">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 tracking-tight">OVER BARBERSHOP & TATTOOS DE LINGE</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 tracking-tight leading-tight">OVER<br />BARBERSHOP & TATTOOS<br />DE LINGE</h2>
             <div className="w-20 sm:w-24 h-1 bg-amber-700 mb-5 sm:mb-6"></div>
 
             <p className="text-gray-700 leading-relaxed mb-4 text-sm sm:text-base">
