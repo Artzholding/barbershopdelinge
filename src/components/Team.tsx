@@ -17,12 +17,11 @@ export default function Team() {
       image: '/Schermafbeelding 2025-10-21 120558 copy.png',
     },
     {
-      name: 'Binnenkort meer',
-      role: 'Nieuwe Medewerkers',
-      experience: 'Coming Soon',
-      specialties: ['Meer informatie volgt binnenkort'],
-      image: '/Schermafbeelding 2025-10-21 121055.png',
-      comingSoon: true,
+      name: 'Arjan Zemar',
+      role: 'Barbier',
+      experience: 'Jong en getalenteerd',
+      specialties: ['Klassiek knippen', 'Baardverzorging', 'Traditional shaving'],
+      image: '/image copy copy copy copy copy copy copy copy copy.png',
     },
   ];
 
@@ -80,19 +79,12 @@ export default function Team() {
                   </div>
                 </div>
 
-                {!member.comingSoon && (
-                  <button
-                    onClick={() => window.open('https://barbershopdelinge.setmore.com', '_blank')}
-                    className="mt-6 w-full bg-amber-600 text-white py-3 text-sm font-bold uppercase hover:bg-amber-700 transition-colors rounded-sm"
-                  >
-                    BOEK MET {member.name.split(' ')[0].toUpperCase()}
-                  </button>
-                )}
-                {member.comingSoon && (
-                  <div className="mt-6 w-full bg-gray-300 text-gray-600 py-3 text-sm font-bold uppercase text-center rounded-sm cursor-not-allowed">
-                    BINNENKORT BESCHIKBAAR
-                  </div>
-                )}
+                <button
+                  onClick={() => window.open('https://barbershopdelinge.setmore.com', '_blank')}
+                  className="mt-6 w-full bg-amber-600 text-white py-3 text-sm font-bold uppercase hover:bg-amber-700 transition-colors rounded-sm"
+                >
+                  BOEK MET {member.name.split(' ')[0].toUpperCase()}
+                </button>
               </div>
             </div>
           ))}
