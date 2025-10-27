@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Mail, Clock } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -37,7 +37,9 @@ export default function Contact() {
               </div>
 
               <div className="flex items-start">
-                <Phone className="text-amber-700 mr-3 flex-shrink-0 mt-1" size={20} />
+                <div className="mr-3 flex-shrink-0 mt-1">
+                  <img src="/image copy copy copy copy copy copy copy copy copy copy.png" alt="WhatsApp" className="w-5 h-5" />
+                </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm sm:text-base">Telefoon</p>
                   <a href="tel:0619939261" className="text-amber-700 hover:underline text-sm sm:text-base">06 19 93 92 61</a>
@@ -135,7 +137,9 @@ export default function Contact() {
               </div>
 
               <div className="flex items-start">
-                <Phone className="text-amber-700 mr-3 flex-shrink-0 mt-1" size={20} />
+                <div className="mr-3 flex-shrink-0 mt-1">
+                  <img src="/image copy copy copy copy copy copy copy copy copy copy.png" alt="WhatsApp" className="w-5 h-5" />
+                </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm sm:text-base">Telefoon</p>
                   <a href="tel:0619939261" className="text-amber-700 hover:underline text-sm sm:text-base">06 19 93 92 61</a>
