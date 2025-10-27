@@ -186,16 +186,16 @@ export default function Contact() {
               className="block mt-4 cursor-pointer group"
             >
               <div className="bg-gray-200 h-48 rounded-lg overflow-hidden shadow-md group-hover:shadow-xl transition-shadow relative">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2450.5!2d5.898!3d51.983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDU4JzU4LjgiTiA1wrA1Myc1Mi44IkU!5e0!3m2!1snl!2snl!4v1234567890"
-                  className="w-full h-full"
-                  style={{ border: 0 }}
-                  allowFullScreen
+                <img
+                  src="https://maps.googleapis.com/maps/api/staticmap?center=Rijnstraat+10,Arnhem&zoom=15&size=600x400&markers=color:red%7CRijnstraat+10,Arnhem&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                  alt="Barbershop De Rijn Arnhem Locatie"
+                  className="w-full h-full object-cover"
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Barbershop De Rijn Arnhem Locatie"
-                ></iframe>
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center pointer-events-none">
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://via.placeholder.com/600x400/e5e7eb/6b7280?text=Rijnstraat+10,+Arnhem';
+                  }}
+                />
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center">
                   <span className="text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                     Open in Google Maps
                   </span>
