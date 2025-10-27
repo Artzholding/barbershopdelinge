@@ -9,6 +9,8 @@ export interface Review {
   approved: boolean;
   date: string;
   expandText?: string;
+  source?: 'local' | 'google';
+  profilePhoto?: string;
 }
 
 const STORAGE_KEY = 'barbershop_elst_reviews';

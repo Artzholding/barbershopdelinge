@@ -2,22 +2,50 @@ import { Star, ChevronLeft, ChevronRight, MessageSquarePlus } from 'lucide-react
 import { useRef, useState, useEffect } from 'react';
 import ReviewForm from './ReviewForm';
 import { getApprovedReviews, addReview, getReviewStats } from '../lib/reviewStorage';
+import { fetchGoogleReviews, formatGoogleReviewForDisplay } from '../lib/googleReviews';
 import type { Review } from '../lib/reviewStorage';
 
 export default function Reviews() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showForm, setShowForm] = useState(false);
   const [reviews, setReviews] = useState<Review[]>([]);
-  const [stats, setStats] = useState({ totalReviews: 0, averageRating: '0' });
+  const [stats, setStats] = useState({ totalReviews: 0, averageRating: '0', googleRating: 0 });
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
 
   useEffect(() => {
     loadReviews();
   }, []);
 
-  const loadReviews = () => {
+  const loadReviews = async () => {
+    // Load local reviews
     const approvedReviews = getApprovedReviews();
-    setReviews(approvedReviews);
-    setStats(getReviewStats());
+
+    // Try to load Google reviews
+    setIsLoadingGoogle(true);
+    let allReviews = [...approvedReviews];
+    let googleData = null;
+
+    try {
+      googleData = await fetchGoogleReviews();
+
+      if (googleData?.reviews) {
+        const formattedGoogleReviews = googleData.reviews.map(formatGoogleReviewForDisplay);
+        allReviews = [...formattedGoogleReviews, ...approvedReviews];
+      }
+    } catch (error) {
+      console.error('Failed to load Google reviews:', error);
+    }
+
+    setIsLoadingGoogle(false);
+    setReviews(allReviews);
+
+    // Calculate stats
+    const localStats = getReviewStats();
+    setStats({
+      totalReviews: googleData?.user_ratings_total || localStats.totalReviews,
+      averageRating: googleData?.rating ? googleData.rating.toFixed(1) : localStats.averageRating,
+      googleRating: googleData?.rating || 0,
+    });
   };
 
   const handleSubmitReview = (reviewData: {
@@ -97,19 +125,29 @@ export default function Reviews() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-full flex items-center justify-center font-semibold text-sm">
-                        {review.avatar}
-                      </div>
+                      {review.profilePhoto ? (
+                        <img
+                          src={review.profilePhoto}
+                          alt={review.name}
+                          className="w-10 h-10 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                          {review.avatar}
+                        </div>
+                      )}
                       <div>
                         <h4 className="font-semibold text-gray-900 text-sm">{review.name}</h4>
                         <p className="text-xs text-gray-500">{review.date}</p>
                       </div>
                     </div>
-                    <img
-                      src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
-                      alt="Google"
-                      className="h-4"
-                    />
+                    {review.source === 'google' && (
+                      <img
+                        src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                        alt="Google"
+                        className="h-4"
+                      />
+                    )}
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
