@@ -1,5 +1,3 @@
-import { Scissors, Sparkles, Pen } from 'lucide-react';
-
 interface ServicesProps {
   filter?: string;
 }
@@ -10,21 +8,18 @@ export default function Services({ filter }: ServicesProps) {
       id: 'herenkapper',
       title: 'KAPPER EN BARBIER',
       description: 'Op zoek naar een kapper en barbier in één? Bij Barbershop & Tattoos De Linge knippen we je haar en stylen we je baard helemaal zoals jij dat wilt. De opties zijn eindeloos, denk bijvoorbeeld eens aan onze Premium Gents Cut of de Barbers Haircut & Clean Shave.',
-      icon: Scissors,
       image: '/kapper elst a copy copy.png',
     },
     {
       id: 'gezicht',
       title: 'GEZICHTSBEHANDELING',
       description: 'Onze gezichtsbehandelingen zijn speciaal ontwikkeld voor de mannenhuid. We bieden verschillende behandelingen aan die je huid reinigen, verzorgen en verfrissen. Een professionele gezichtsbehandeling voor optimale resultaten.',
-      icon: Sparkles,
       image: '/gezichtbehandeling elst copy copy copy.png',
     },
     {
       id: 'tattoos',
       title: 'TATTOOS',
       description: 'Professionele tattoo-kunst van ervaren artiesten. Van kleine, betekenisvolle designs tot grootschalige custom werk. Wij brengen jouw ideeën tot leven met precisie en creativiteit in een veilige en hygiënische omgeving.',
-      icon: Pen,
       image: '/tattoos/files_1118539-1761226077099-tattoo elst.png',
     },
   ];
@@ -45,7 +40,6 @@ export default function Services({ filter }: ServicesProps) {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredServices.map((service) => {
-          const Icon = service.icon;
           return (
             <div
               key={service.id}
@@ -59,7 +53,6 @@ export default function Services({ filter }: ServicesProps) {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col items-center justify-end text-center p-6">
-                  <Icon size={48} className="mb-2 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
                   <h3 className="text-2xl font-bold text-white">{service.title}</h3>
                 </div>
               </div>
