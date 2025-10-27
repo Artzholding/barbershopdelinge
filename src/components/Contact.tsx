@@ -48,7 +48,7 @@ export default function Contact() {
                 <Mail className="text-amber-700 mr-3 flex-shrink-0 mt-1" size={20} />
                 <div>
                   <p className="font-bold text-gray-900 text-sm sm:text-base">E-mail</p>
-                  <a href="mailto:info@elst.nl" className="text-amber-700 hover:underline text-sm sm:text-base">info@elst.nl</a>
+                  <a href="mailto:Info@barbershopdelinge.nl" className="text-amber-700 hover:underline text-sm sm:text-base">Info@barbershopdelinge.nl</a>
                 </div>
               </div>
 
