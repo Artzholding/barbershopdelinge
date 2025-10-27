@@ -173,7 +173,7 @@ export default function Contact() {
             </div>
 
             <button
-              onClick={() => window.open('https://barbershopdelinge.setmore.com', '_blank')}
+              onClick={() => window.open('https://barbershopderijn.setmore.com/', '_blank')}
               className="mt-6 bg-amber-700 text-white px-8 py-3 text-sm font-bold uppercase hover:bg-amber-800 transition-colors shadow-md w-full rounded-sm"
             >
               AFSPRAAK MAKEN ARNHEM
