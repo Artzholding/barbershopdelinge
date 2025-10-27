@@ -148,16 +148,24 @@ export default function Contact() {
                   <p className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Openingstijden</p>
                   <div className="space-y-1 text-gray-700 text-sm">
                     <p className="flex justify-between gap-4">
-                      <span>Maandag:</span>
-                      <span className="font-semibold">Gesloten</span>
-                    </p>
-                    <p className="flex justify-between gap-4">
-                      <span>Dinsdag - Zaterdag:</span>
-                      <span className="font-semibold">10:00 - 19:00</span>
-                    </p>
-                    <p className="flex justify-between gap-4">
                       <span>Zondag:</span>
-                      <span className="font-semibold">12:00 - 18:00</span>
+                      <span className="font-semibold">12:00 - 17:00</span>
+                    </p>
+                    <p className="flex justify-between gap-4">
+                      <span>Maandag:</span>
+                      <span className="font-semibold">08:00 - 17:00</span>
+                    </p>
+                    <p className="flex justify-between gap-4">
+                      <span>Dinsdag, Woensdag:</span>
+                      <span className="font-semibold">09:30 - 18:00</span>
+                    </p>
+                    <p className="flex justify-between gap-4">
+                      <span>Donderdag:</span>
+                      <span className="font-semibold">09:30 - 20:00</span>
+                    </p>
+                    <p className="flex justify-between gap-4">
+                      <span>Vrijdag, Zaterdag:</span>
+                      <span className="font-semibold">09:30 - 18:00</span>
                     </p>
                   </div>
                 </div>
