@@ -187,7 +187,7 @@ export default function Contact() {
             >
               <div className="bg-gray-200 h-48 rounded-lg overflow-hidden shadow-md group-hover:shadow-xl transition-shadow relative">
                 <img
-                  src="/arnhem-location.png"
+                  src="/Schermafbeelding 2025-10-27 124532 copy copy.png"
                   alt="Barbershop De Rijn Arnhem Locatie"
                   className="w-full h-full object-cover"
                   loading="lazy"
