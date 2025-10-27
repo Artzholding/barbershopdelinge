@@ -187,13 +187,10 @@ export default function Contact() {
             >
               <div className="bg-gray-200 h-48 rounded-lg overflow-hidden shadow-md group-hover:shadow-xl transition-shadow relative">
                 <img
-                  src="https://maps.googleapis.com/maps/api/staticmap?center=Rijnstraat+10,Arnhem&zoom=15&size=600x400&markers=color:red%7CRijnstraat+10,Arnhem&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                  src="/arnhem-location.png"
                   alt="Barbershop De Rijn Arnhem Locatie"
                   className="w-full h-full object-cover"
                   loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://via.placeholder.com/600x400/e5e7eb/6b7280?text=Rijnstraat+10,+Arnhem';
-                  }}
                 />
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity flex items-center justify-center">
                   <span className="text-white text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
