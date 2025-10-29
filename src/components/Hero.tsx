@@ -7,14 +7,16 @@ export default function Hero() {
   const slides = [
     {
       title: 'BARBIER & KAPPER ELST',
-      subtitle: 'KNIPPEN, FADE EN BAARDVERZORGING',
+      subtitle: 'Ontdek Barbershop De Linge - dé plek voor herenkapsels en scheerbeurten in Elst',
+      description: 'Onze ervaren barbiers leveren stijlvolle en persoonlijke service voor een zelfverzekerde look',
       tagline: 'Sinds 2007',
       image: 'https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=1920',
     },
     {
-      title: 'BESTE KAPPER IN ELST',
-      subtitle: 'MODERNE HERENKAPSELS & FADE KNIPPEN',
-      tagline: 'Premium Barbershop',
+      title: 'PERFECTE COUPE & SCHEERBEURT',
+      subtitle: 'Maak vandaag nog een afspraak bij Barbershop De Linge in Elst',
+      description: 'Ervaar vakmanschap, stijl en persoonlijke aandacht bij elke behandeling',
+      tagline: 'Premium Service',
       image: 'https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg?auto=compress&cs=tinysrgb&w=1920',
     },
   ];
@@ -59,12 +61,15 @@ export default function Hero() {
               </p>
             </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight">
             {slides[currentSlide].title}
           </h1>
           <div className="w-24 sm:w-32 h-1 bg-amber-500 mx-auto mb-4 sm:mb-6"></div>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-100 mb-8 sm:mb-10 tracking-wide font-light">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-100 mb-3 sm:mb-4 tracking-wide font-light">
             {slides[currentSlide].subtitle}
+          </p>
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 max-w-3xl mx-auto font-light">
+            {slides[currentSlide].description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
