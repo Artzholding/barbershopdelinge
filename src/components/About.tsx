@@ -10,18 +10,18 @@ export default function About({ fullPage }: AboutProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="order-2 md:order-1">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 tracking-tight leading-tight">OVER<br />BARBERSHOP & TATTOOS<br />DE LINGE</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 tracking-tight leading-tight">KAPPER & BARBIER<br />IN ELST<br />SINDS 2007</h2>
             <div className="w-20 sm:w-24 h-1 bg-amber-700 mb-5 sm:mb-6"></div>
 
             <p className="text-gray-700 leading-relaxed mb-4 text-sm sm:text-base">
-              Barbershop & Tattoos De Linge is opgericht in 2014. We zijn een kapperszaak, scheersalon, tattoo studio
-              en verzorgingscentrum in één. In onze servicegerichte kapperszaak vind je eersteklas kappers- en
-              verzorgingsbehandelingen, professionele tattoo-kunst, kwaliteitsproducten voor je haar, lichaam, scheren
-              en gezicht.
+              Barbershop De Linge is dé specialist voor knippen en baardverzorging in Elst sinds 2007. Als ervaren kapper
+              en barbier bieden we professionele herenkapsels, fade knippen, traditioneel scheren en moderne baardverzorging.
+              Onze barbershop in Elst staat bekend om vakmanschap en persoonlijke service.
             </p>
             <p className="text-gray-700 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base">
-              Ons team bestaat uit meesterkappers en experts op het gebied van herenverzorging en doen er alles aan om
-              jou de beste service te bieden.
+              Ons team van meesterkappers en barbiers heeft jarenlange ervaring in het knippen van herenkapsels.
+              Of je nu komt voor een klassieke coupe, een strakke fade, of professionele baardverzorging - bij onze
+              kapper in Elst ben je aan het juiste adres.
             </p>
 
             <div className="space-y-3 mb-6 sm:mb-8">
@@ -54,7 +54,7 @@ export default function About({ fullPage }: AboutProps) {
             <div className="relative overflow-hidden rounded-lg shadow-2xl h-64 sm:h-96 md:h-[500px]">
               <img
                 src="/Schermafbeelding 2025-10-21 111826.png"
-                alt="Professioneel kapper team bij Barbershop De Linge Elst - ervaren barbiers en stylisten"
+                alt="Barbier en kapper Elst - professioneel knippen en baardverzorging bij Barbershop De Linge"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />

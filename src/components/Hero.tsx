@@ -6,15 +6,15 @@ export default function Hero() {
 
   const slides = [
     {
-      title: 'BARBERSHOP & TATTOOS DE LINGE',
-      subtitle: 'HAIRCUTS EN TATTOOS',
-      tagline: 'Sinds 2014',
+      title: 'BARBIER & KAPPER ELST',
+      subtitle: 'KNIPPEN, FADE EN BAARDVERZORGING',
+      tagline: 'Sinds 2007',
       image: 'https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=1920',
     },
     {
-      title: 'DE MODERNE MAN',
-      subtitle: 'VERDIENT HET BESTE',
-      tagline: 'Exclusieve Verzorging',
+      title: 'BESTE KAPPER IN ELST',
+      subtitle: 'MODERNE HERENKAPSELS & FADE KNIPPEN',
+      tagline: 'Premium Barbershop',
       image: 'https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg?auto=compress&cs=tinysrgb&w=1920',
     },
   ];

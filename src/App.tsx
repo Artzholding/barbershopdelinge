@@ -11,12 +11,21 @@ import Reviews from './components/Reviews';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { updateMetaTags } from './lib/seoConfig';
+import { injectStructuredData, getLocalBusinessSchema, getServicesSchema, getBreadcrumbSchema } from './lib/structuredData';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
   useEffect(() => {
     updateMetaTags(currentPage);
+
+    const schemas = [
+      getLocalBusinessSchema(),
+      ...getServicesSchema(),
+      getBreadcrumbSchema(currentPage)
+    ];
+    injectStructuredData(schemas);
+
     window.scrollTo(0, 0);
   }, [currentPage]);
 
