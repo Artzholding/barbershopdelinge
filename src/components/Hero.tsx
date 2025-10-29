@@ -16,7 +16,7 @@ export default function Hero() {
           <div className="mb-4 sm:mb-6">
             <div className="inline-block border-2 border-amber-500 px-4 py-2 sm:px-6 sm:py-3">
               <p className="text-amber-400 text-xs sm:text-sm md:text-base font-bold tracking-widest uppercase">
-                Sinds 2007
+                Sinds 2014
               </p>
             </div>
           </div>
