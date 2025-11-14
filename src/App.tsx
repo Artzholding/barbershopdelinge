@@ -10,11 +10,28 @@ import GalleryAdmin from './components/GalleryAdmin';
 import Reviews from './components/Reviews';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ReviewQRLanding from './components/ReviewQRLanding';
+import VisitTracker from './components/VisitTracker';
+import ReviewDashboard from './components/ReviewDashboard';
+import QRCodeGenerator from './components/QRCodeGenerator';
 import { updateMetaTags } from './lib/seoConfig';
 import { injectStructuredData, getLocalBusinessSchema, getServicesSchema, getBreadcrumbSchema } from './lib/structuredData';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(() => {
+    const hash = window.location.hash.slice(1);
+    return hash || 'home';
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1) || 'home';
+      setCurrentPage(hash);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   useEffect(() => {
     updateMetaTags(currentPage);
@@ -117,9 +134,23 @@ function App() {
             <GalleryAdmin />
           </div>
         )}
+        {currentPage === '/review' && <ReviewQRLanding />}
+        {currentPage === 'visit-tracker' && (
+          <div className="py-16">
+            <VisitTracker />
+          </div>
+        )}
+        {currentPage === 'review-dashboard' && <ReviewDashboard />}
+        {currentPage === 'qr-generator' && (
+          <div className="py-16">
+            <QRCodeGenerator />
+          </div>
+        )}
       </main>
 
-      <Footer setCurrentPage={setCurrentPage} />
+      {!['review', '/review', 'review-dashboard'].includes(currentPage) && (
+        <Footer setCurrentPage={setCurrentPage} />
+      )}
     </div>
   );
 }
