@@ -15,62 +15,7 @@ export interface GalleryImage {
   updated_at: string;
 }
 
-const defaultImages: GalleryImage[] = [
-  {
-    id: '1',
-    url: '/Schermafbeelding 2025-10-21 121023.png',
-    title: 'Fade Knippen en Baardverzorging',
-    display_order: 1,
-    is_active: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: '2',
-    url: '/Schermafbeelding 2025-10-24 200227 copy copy copy.png',
-    title: 'Professionele Baardverzorging Service',
-    display_order: 2,
-    is_active: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: '3',
-    url: '/Schermafbeelding 2025-10-14 112538.png',
-    title: 'Premium Herenkapsels',
-    display_order: 3,
-    is_active: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: '4',
-    url: '/files_1118539-1761227629877-Schermafbeelding 2025-10-21 121047.png',
-    title: 'Professionele Baardverzorging',
-    display_order: 4,
-    is_active: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: '5',
-    url: '/files_1118539-1761228775919-Schermafbeelding 2025-10-21 121012.png',
-    title: 'Moderne Fade Haircut',
-    display_order: 5,
-    is_active: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: '6',
-    url: '/Schermafbeelding 2025-10-14 112433.png',
-    title: 'Moderne Fade en Baard Styling',
-    display_order: 6,
-    is_active: true,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-];
+const defaultImages: GalleryImage[] = [];
 
 export async function getActiveGalleryImages(): Promise<GalleryImage[]> {
   try {
@@ -82,13 +27,13 @@ export async function getActiveGalleryImages(): Promise<GalleryImage[]> {
 
     if (error) {
       console.error('Error fetching gallery images:', error);
-      return defaultImages;
+      return [];
     }
 
-    return data && data.length > 0 ? data : defaultImages;
+    return data || [];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
-    return defaultImages;
+    return [];
   }
 }
 
@@ -101,13 +46,13 @@ export async function getAllGalleryImages(): Promise<GalleryImage[]> {
 
     if (error) {
       console.error('Error fetching all gallery images:', error);
-      return defaultImages;
+      return [];
     }
 
-    return data || defaultImages;
+    return data || [];
   } catch (error) {
     console.error('Error fetching all gallery images:', error);
-    return defaultImages;
+    return [];
   }
 }
 
