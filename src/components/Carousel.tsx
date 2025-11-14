@@ -15,9 +15,11 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
   const goToNext = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    const nextIndex = (currentIndex + 1) % images.length;
+    console.log('Going to next:', nextIndex, images[nextIndex]);
+    setCurrentIndex(nextIndex);
     setTimeout(() => setIsTransitioning(false), 500);
-  }, [images.length, isTransitioning]);
+  }, [images.length, isTransitioning, currentIndex, images]);
 
   const goToPrevious = useCallback(() => {
     if (isTransitioning) return;
@@ -38,6 +40,7 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
   };
 
   useEffect(() => {
+    console.log('Carousel images:', images.length, 'Auto-playing:', isAutoPlaying);
     if (!isAutoPlaying || images.length === 0) return;
 
     const interval = setInterval(goToNext, autoPlayInterval);
@@ -82,8 +85,10 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
               <img
                 src={image.url}
                 alt={`${image.title} - Barbershop De Linge Elst`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 loading={index === 0 ? 'eager' : 'lazy'}
+                onError={(e) => console.error('Image load error:', image.url, e)}
+                onLoad={() => console.log('Image loaded:', image.url)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             </div>
