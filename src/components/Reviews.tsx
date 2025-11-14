@@ -104,7 +104,7 @@ export default function Reviews() {
                 Review schrijven
               </button>
               <button
-                onClick={() => window.open('https://g.page/r/CRPHn_fGEQ9XEBM/review', '_blank')}
+                onClick={() => window.open('https://www.google.com/maps/place/Barbershop+de+Linge/@51.9185389,5.8462198,17z/data=!4m8!3m7!1s0x47c7a73c5df05c25:0xb7b7969b015bc96f!8m2!3d51.9185389!4d5.8462198!9m1!1b1!16s%2Fg%2F11ympqtcgm?entry=ttu', '_blank')}
                 className="w-full bg-white text-amber-700 border-2 border-amber-700 px-4 py-3 text-sm font-bold uppercase hover:bg-amber-50 transition-colors flex items-center justify-center gap-2 shadow-md rounded-sm"
               >
                 <img

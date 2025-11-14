@@ -38,7 +38,7 @@ export default function ReviewQRLanding() {
         completed_at: new Date().toISOString(),
       }).eq('id', requestId);
 
-      window.location.href = 'https://g.page/r/CRPHn_fGEQ9XEBM/review';
+      window.location.href = 'https://www.google.com/maps/place/Barbershop+de+Linge/@51.9185389,5.8462198,17z/data=!4m8!3m7!1s0x47c7a73c5df05c25:0xb7b7969b015bc96f!8m2!3d51.9185389!4d5.8462198!9m1!1b1!16s%2Fg%2F11ympqtcgm?entry=ttu';
     } else {
       await supabase.from('review_requests').update({
         redirected_to: 'internal',
