@@ -17,7 +17,7 @@ export default function Footer({ setCurrentPage }: FooterProps) {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="/barbershop_de_linge_logo_circular_refined.png"
+                src="/barbershop_de_linge_logo copy.jpg"
                 alt="Barbershop & Tattoos De Linge Elst Logo"
                 className="h-16 w-auto object-contain"
               />

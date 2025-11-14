@@ -11,7 +11,7 @@ export function getLocalBusinessSchema(): StructuredDataConfig {
     name: 'Barbershop De Linge',
     alternateName: 'De Linge Barbershop Elst',
     description: 'Premium kapper en barbershop in Elst sinds 2007. Specialist in herenkapsels, baardverzorging, fade knippen en tattoos.',
-    image: 'https://barbershopdelinge.nl/barbershop_de_linge_logo_circular_refined.png',
+    image: 'https://barbershopdelinge.nl/barbershop_de_linge_logo copy.jpg',
     '@id': 'https://barbershopdelinge.nl',
     url: 'https://barbershopdelinge.nl',
     telephone: '+31-26-123-4567',
