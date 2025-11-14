@@ -96,11 +96,11 @@ export default function Reviews() {
               className="h-8 sm:h-10 mb-4"
             />
             <button
-              onClick={() => setShowForm(true)}
+              onClick={() => window.open('https://g.page/r/CRPHn_fGEQ9XEBM/review', '_blank')}
               className="w-full bg-amber-700 text-white px-4 py-3 text-sm font-bold uppercase hover:bg-amber-800 transition-colors flex items-center justify-center gap-2 shadow-md rounded-sm"
             >
               <MessageSquarePlus size={18} />
-              Review schrijven
+              Review op Google
             </button>
           </div>
 
