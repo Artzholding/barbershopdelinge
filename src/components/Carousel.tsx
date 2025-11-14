@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import { type GalleryImage } from '../lib/galleryStorage';
 
@@ -11,26 +11,45 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
   const goToNext = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+
+    const currentMedia = images[currentIndex];
+    if (currentMedia?.media_type === 'video' && videoRefs.current[currentMedia.id]) {
+      videoRefs.current[currentMedia.id]?.pause();
+    }
+
     const nextIndex = (currentIndex + 1) % images.length;
     console.log('Going to next:', nextIndex, images[nextIndex]);
     setCurrentIndex(nextIndex);
     setTimeout(() => setIsTransitioning(false), 500);
-  }, [images.length, isTransitioning, currentIndex, images]);
+  }, [images, isTransitioning, currentIndex]);
 
   const goToPrevious = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+
+    const currentMedia = images[currentIndex];
+    if (currentMedia?.media_type === 'video' && videoRefs.current[currentMedia.id]) {
+      videoRefs.current[currentMedia.id]?.pause();
+    }
+
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     setTimeout(() => setIsTransitioning(false), 500);
-  }, [images.length, isTransitioning]);
+  }, [images, isTransitioning, currentIndex]);
 
   const goToSlide = (index: number) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+
+    const currentMedia = images[currentIndex];
+    if (currentMedia?.media_type === 'video' && videoRefs.current[currentMedia.id]) {
+      videoRefs.current[currentMedia.id]?.pause();
+    }
+
     setCurrentIndex(index);
     setTimeout(() => setIsTransitioning(false), 500);
   };
@@ -43,9 +62,14 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
     console.log('Carousel images:', images.length, 'Auto-playing:', isAutoPlaying);
     if (!isAutoPlaying || images.length === 0) return;
 
+    const currentMedia = images[currentIndex];
+    if (currentMedia?.media_type === 'video') {
+      return;
+    }
+
     const interval = setInterval(goToNext, autoPlayInterval);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, autoPlayInterval, goToNext, images.length]);
+  }, [isAutoPlaying, autoPlayInterval, goToNext, images, currentIndex]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -82,15 +106,28 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
                   : 'opacity-0 scale-105 z-0'
               }`}
             >
-              <img
-                src={image.url}
-                alt={`${image.title} - Barbershop De Linge Elst`}
-                className="w-full h-full object-contain"
-                loading={index === 0 ? 'eager' : 'lazy'}
-                onError={(e) => console.error('Image load error:', image.url, e)}
-                onLoad={() => console.log('Image loaded:', image.url)}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              {image.media_type === 'video' ? (
+                <video
+                  ref={(el) => (videoRefs.current[image.id] = el)}
+                  src={image.url}
+                  className="w-full h-full object-contain"
+                  controls
+                  playsInline
+                  loop
+                  onEnded={goToNext}
+                  onError={(e) => console.error('Video load error:', image.url, e)}
+                />
+              ) : (
+                <img
+                  src={image.url}
+                  alt={`${image.title} - Barbershop De Linge Elst`}
+                  className="w-full h-full object-contain"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  onError={(e) => console.error('Image load error:', image.url, e)}
+                  onLoad={() => console.log('Image loaded:', image.url)}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
             </div>
           ))}
         </div>
@@ -163,12 +200,18 @@ export default function Carousel({ images, autoPlayInterval = 4000 }: CarouselPr
                     : 'opacity-60 hover:opacity-100'
                 }`}
               >
-                <img
-                  src={image.url}
-                  alt={image.title}
-                  className="w-24 h-16 object-cover"
-                  loading="lazy"
-                />
+                {image.media_type === 'video' ? (
+                  <div className="w-24 h-16 bg-gray-800 flex items-center justify-center">
+                    <Play size={24} className="text-white" />
+                  </div>
+                ) : (
+                  <img
+                    src={image.url}
+                    alt={image.title}
+                    className="w-24 h-16 object-cover"
+                    loading="lazy"
+                  />
+                )}
               </button>
             ))}
           </div>

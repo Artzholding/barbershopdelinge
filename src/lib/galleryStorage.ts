@@ -5,10 +5,13 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export type MediaType = 'image' | 'video';
+
 export interface GalleryImage {
   id: string;
   url: string;
   title: string;
+  media_type: MediaType;
   display_order: number;
   is_active: boolean;
   created_at: string;
@@ -59,6 +62,7 @@ export async function getAllGalleryImages(): Promise<GalleryImage[]> {
 export async function addGalleryImage(imageData: {
   url: string;
   title: string;
+  media_type?: MediaType;
   display_order?: number;
 }): Promise<GalleryImage | null> {
   try {
@@ -70,6 +74,7 @@ export async function addGalleryImage(imageData: {
         {
           url: imageData.url,
           title: imageData.title,
+          media_type: imageData.media_type ?? 'image',
           display_order: order,
         },
       ])

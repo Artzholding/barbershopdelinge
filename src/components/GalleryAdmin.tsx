@@ -6,9 +6,10 @@ import {
   deleteGalleryImage,
   toggleImageActive,
   reorderImages,
-  type GalleryImage
+  type GalleryImage,
+  type MediaType
 } from '../lib/galleryStorage';
-import { Upload, Trash2, Eye, EyeOff, GripVertical, Plus, X } from 'lucide-react';
+import { Upload, Trash2, Eye, EyeOff, GripVertical, Plus, X, Play } from 'lucide-react';
 
 export default function GalleryAdmin() {
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -16,6 +17,7 @@ export default function GalleryAdmin() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newImageUrl, setNewImageUrl] = useState('');
   const [newImageTitle, setNewImageTitle] = useState('');
+  const [newMediaType, setNewMediaType] = useState<MediaType>('image');
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -38,15 +40,17 @@ export default function GalleryAdmin() {
     const newImage = await addGalleryImage({
       url: newImageUrl,
       title: newImageTitle,
+      media_type: newMediaType,
     });
 
     if (newImage) {
       setImages([...images, newImage]);
       setNewImageUrl('');
       setNewImageTitle('');
+      setNewMediaType('image');
       setShowAddForm(false);
     } else {
-      alert('Fout bij toevoegen van afbeelding');
+      alert('Fout bij toevoegen van media');
     }
   }
 
@@ -62,7 +66,7 @@ export default function GalleryAdmin() {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm('Weet je zeker dat je deze afbeelding wilt verwijderen?')) {
+    if (!confirm('Weet je zeker dat je dit item wilt verwijderen?')) {
       return;
     }
 
@@ -70,7 +74,7 @@ export default function GalleryAdmin() {
     if (success) {
       setImages(images.filter(img => img.id !== id));
     } else {
-      alert('Fout bij verwijderen van afbeelding');
+      alert('Fout bij verwijderen van item');
     }
   }
 
@@ -119,7 +123,7 @@ export default function GalleryAdmin() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Galerij Beheer</h1>
-        <p className="text-gray-600">Beheer de afbeeldingen in de galerij</p>
+        <p className="text-gray-600">Beheer de afbeeldingen en video's in de galerij</p>
       </div>
 
       <div className="mb-6">
@@ -128,25 +132,41 @@ export default function GalleryAdmin() {
           className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
         >
           {showAddForm ? <X size={20} /> : <Plus size={20} />}
-          {showAddForm ? 'Annuleren' : 'Afbeelding Toevoegen'}
+          {showAddForm ? 'Annuleren' : 'Media Toevoegen'}
         </button>
       </div>
 
       {showAddForm && (
         <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6 shadow-sm">
-          <h3 className="text-lg font-semibold mb-4">Nieuwe Afbeelding</h3>
+          <h3 className="text-lg font-semibold mb-4">Nieuwe Media</h3>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Afbeelding URL
+                Media Type
+              </label>
+              <select
+                value={newMediaType}
+                onChange={(e) => setNewMediaType(e.target.value as MediaType)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              >
+                <option value="image">Afbeelding</option>
+                <option value="video">Video</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {newMediaType === 'video' ? 'Video URL' : 'Afbeelding URL'}
               </label>
               <input
                 type="text"
                 value={newImageUrl}
                 onChange={(e) => setNewImageUrl(e.target.value)}
-                placeholder="/pad/naar/afbeelding.png"
+                placeholder={newMediaType === 'video' ? '/pad/naar/video.mp4' : '/pad/naar/afbeelding.png'}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
+              <p className="text-xs text-gray-500 mt-1">
+                {newMediaType === 'video' ? 'Gebruik een directe video URL (.mp4, .webm, etc.)' : 'Gebruik een afbeelding URL'}
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -156,7 +176,7 @@ export default function GalleryAdmin() {
                 type="text"
                 value={newImageTitle}
                 onChange={(e) => setNewImageTitle(e.target.value)}
-                placeholder="Beschrijvende titel voor de afbeelding"
+                placeholder="Beschrijvende titel"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
             </div>
@@ -178,6 +198,7 @@ export default function GalleryAdmin() {
               <tr>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700 w-12"></th>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Preview</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Type</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Titel</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">URL</th>
                 <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
@@ -198,11 +219,22 @@ export default function GalleryAdmin() {
                     <GripVertical size={20} className="text-gray-400" />
                   </td>
                   <td className="px-4 py-3">
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      className="w-16 h-16 object-cover rounded"
-                    />
+                    {image.media_type === 'video' ? (
+                      <div className="w-16 h-16 bg-gray-800 rounded flex items-center justify-center">
+                        <Play size={24} className="text-white" />
+                      </div>
+                    ) : (
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        className="w-16 h-16 object-cover rounded"
+                      />
+                    )}
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                      {image.media_type === 'video' ? 'Video' : 'Afbeelding'}
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-900">{image.title}</td>
                   <td className="px-4 py-3 text-sm text-gray-500 max-w-xs truncate">
@@ -246,7 +278,7 @@ export default function GalleryAdmin() {
 
       {images.length === 0 && (
         <div className="text-center py-12 text-gray-500">
-          Geen afbeeldingen in de galerij
+          Geen items in de galerij
         </div>
       )}
     </div>
