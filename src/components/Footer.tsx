@@ -95,13 +95,21 @@ export default function Footer({ setCurrentPage }: FooterProps) {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-white">Ma - Vr:</p>
-                  <p>10:00 - 19:00</p>
+                  <p className="font-semibold text-white">Maandag:</p>
+                  <p>12:00 - 17:00</p>
                 </div>
               </div>
               <div className="ml-9">
-                <p className="font-semibold text-white">Zaterdag:</p>
-                <p>10:00 - 18:00</p>
+                <p className="font-semibold text-white">Di, Wo:</p>
+                <p>09:30 - 18:00</p>
+              </div>
+              <div className="ml-9">
+                <p className="font-semibold text-white">Donderdag:</p>
+                <p>09:30 - 17:30</p>
+              </div>
+              <div className="ml-9">
+                <p className="font-semibold text-white">Vr, Za:</p>
+                <p>09:30 - 18:00</p>
               </div>
               <div className="ml-9">
                 <p className="font-semibold text-white">Zondag:</p>

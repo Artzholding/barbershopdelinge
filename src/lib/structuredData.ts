@@ -33,20 +33,26 @@ export function getLocalBusinessSchema(): StructuredDataConfig {
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday'],
-        opens: '09:00',
-        closes: '18:00'
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '18:00'
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Saturday'],
-        opens: '09:00',
+        opens: '12:00',
         closes: '17:00'
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Tuesday', 'Wednesday'],
+        opens: '09:30',
+        closes: '18:00'
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Thursday'],
+        opens: '09:30',
+        closes: '17:30'
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Friday', 'Saturday'],
+        opens: '09:30',
+        closes: '18:00'
       }
     ],
     sameAs: [
