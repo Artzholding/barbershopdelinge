@@ -95,13 +95,26 @@ export default function Reviews() {
               alt="Google"
               className="h-8 sm:h-10 mb-4"
             />
-            <button
-              onClick={() => window.open('https://g.page/r/CRPHn_fGEQ9XEBM/review', '_blank')}
-              className="w-full bg-amber-700 text-white px-4 py-3 text-sm font-bold uppercase hover:bg-amber-800 transition-colors flex items-center justify-center gap-2 shadow-md rounded-sm"
-            >
-              <MessageSquarePlus size={18} />
-              Review op Google
-            </button>
+            <div className="space-y-3">
+              <button
+                onClick={() => setShowForm(true)}
+                className="w-full bg-amber-700 text-white px-4 py-3 text-sm font-bold uppercase hover:bg-amber-800 transition-colors flex items-center justify-center gap-2 shadow-md rounded-sm"
+              >
+                <MessageSquarePlus size={18} />
+                Review schrijven
+              </button>
+              <button
+                onClick={() => window.open('https://g.page/r/CRPHn_fGEQ9XEBM/review', '_blank')}
+                className="w-full bg-white text-amber-700 border-2 border-amber-700 px-4 py-3 text-sm font-bold uppercase hover:bg-amber-50 transition-colors flex items-center justify-center gap-2 shadow-md rounded-sm"
+              >
+                <img
+                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                  alt="Google"
+                  className="h-4"
+                />
+                Review op Google
+              </button>
+            </div>
           </div>
 
           <div className="flex-1 relative w-full overflow-hidden">
