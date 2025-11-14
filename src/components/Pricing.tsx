@@ -6,7 +6,7 @@ export default function Pricing() {
       category: 'KNIPPEN',
       items: [
         { name: 'Knippen volwassenen', price: '€27,50', description: 'Wassen, knippen en modelleren' },
-        { name: 'Knippen & lange baard', price: '€42,50', description: 'Knippen en baard modelleren / scheren' },
+        { name: 'Knippen & lange baard', price: '€40,00', description: 'Knippen en baard modelleren / scheren' },
         { name: 'Knippen & korte baard', price: '€35,00', description: 'Wassen, knippen en korte baard modelleren' },
         { name: 'Taperfade only', price: '€20,00', description: 'Alleen de zijkanten en de achterkant' },
         { name: 'Studenten', price: '€25,00', description: 'Wassen, knippen, föhnen / modelleren (op vertoon van je studentenkaart)' },
