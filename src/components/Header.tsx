@@ -33,7 +33,7 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
             onClick={() => handleNavClick('home')}
           >
             <img
-              src="/barbershop_de_linge_logo_circular_refined.png"
+              src="/barbershop-de-linge-logo-2024.jpg"
               alt="Barbershop De Linge - Haircuts en Tattoos"
               className="h-14 w-auto object-contain"
             />
