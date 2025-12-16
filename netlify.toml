@@ -1,76 +1,85 @@
 [[redirects]]
-  from = "/herenkapper"
-  to = "/herenkapper.html"
-  status = 200
+from = "/herenkapper"
+to = "/herenkapper.html"
+status = 200
 
 [[redirects]]
-  from = "/barbier"
-  to = "/barbier.html"
-  status = 200
+from = "/barbier"
+to = "/barbier.html"
+status = 200
 
 [[redirects]]
-  from = "/waxen"
-  to = "/waxen.html"
-  status = 200
+from = "/waxen"
+to = "/waxen.html"
+status = 200
 
 [[redirects]]
-  from = "/gezichtsbehandeling"
-  to = "/gezichtsbehandeling.html"
-  status = 200
+from = "/gezichtsbehandeling"
+to = "/gezichtsbehandeling.html"
+status = 200
 
 [[redirects]]
-  from = "/massages"
-  to = "/massages.html"
-  status = 200
+from = "/massages"
+to = "/massages.html"
+status = 200
 
 [[redirects]]
-  from = "/scheerwinkel"
-  to = "/scheerwinkel.html"
-  status = 200
+from = "/scheerwinkel"
+to = "/scheerwinkel.html"
+status = 200
 
 [[redirects]]
-  from = "/team"
-  to = "/team.html"
-  status = 200
+from = "/team"
+to = "/team.html"
+status = 200
 
 [[redirects]]
-  from = "/over-ons"
-  to = "/over-ons.html"
-  status = 200
+from = "/over-ons"
+to = "/over-ons.html"
+status = 200
 
 [[redirects]]
-  from = "/contact"
-  to = "/contact.html"
-  status = 200
+from = "/contact"
+to = "/contact.html"
+status = 200
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
+for = "/*"
+
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+X-Content-Type-Options = "nosniff"
 
 [[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/*.js"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/*.css"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/*.jpg"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/*.png"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[build]
+command = "npx vite build"
+publish = "dist"
