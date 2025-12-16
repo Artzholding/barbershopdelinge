@@ -3,7 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = (supabaseUrl && supabaseAnonKey)
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
 
 export type MediaType = 'image' | 'video';
 
@@ -21,6 +23,11 @@ export interface GalleryImage {
 const defaultImages: GalleryImage[] = [];
 
 export async function getActiveGalleryImages(): Promise<GalleryImage[]> {
+  if (!supabase) {
+    console.warn('Supabase not configured, returning empty gallery');
+    return [];
+  }
+
   try {
     const { data, error } = await supabase
       .from('gallery_images')
@@ -41,6 +48,10 @@ export async function getActiveGalleryImages(): Promise<GalleryImage[]> {
 }
 
 export async function getAllGalleryImages(): Promise<GalleryImage[]> {
+  if (!supabase) {
+    return [];
+  }
+
   try {
     const { data, error } = await supabase
       .from('gallery_images')
@@ -65,6 +76,10 @@ export async function addGalleryImage(imageData: {
   media_type?: MediaType;
   display_order?: number;
 }): Promise<GalleryImage | null> {
+  if (!supabase) {
+    return null;
+  }
+
   try {
     const order = imageData.display_order ?? (await getNextDisplayOrder());
 
@@ -97,6 +112,10 @@ export async function updateGalleryImage(
   id: string,
   updates: Partial<Omit<GalleryImage, 'id' | 'created_at'>>
 ): Promise<GalleryImage | null> {
+  if (!supabase) {
+    return null;
+  }
+
   try {
     const { data, error } = await supabase
       .from('gallery_images')
@@ -121,6 +140,10 @@ export async function updateGalleryImage(
 }
 
 export async function deleteGalleryImage(id: string): Promise<boolean> {
+  if (!supabase) {
+    return false;
+  }
+
   try {
     const { error } = await supabase
       .from('gallery_images')
@@ -140,6 +163,10 @@ export async function deleteGalleryImage(id: string): Promise<boolean> {
 }
 
 export async function toggleImageActive(id: string, isActive: boolean): Promise<boolean> {
+  if (!supabase) {
+    return false;
+  }
+
   try {
     const { error } = await supabase
       .from('gallery_images')
@@ -159,6 +186,10 @@ export async function toggleImageActive(id: string, isActive: boolean): Promise<
 }
 
 export async function reorderImages(imageIds: string[]): Promise<boolean> {
+  if (!supabase) {
+    return false;
+  }
+
   try {
     const updates = imageIds.map((id, index) => ({
       id,
@@ -186,6 +217,10 @@ export async function reorderImages(imageIds: string[]): Promise<boolean> {
 }
 
 async function getNextDisplayOrder(): Promise<number> {
+  if (!supabase) {
+    return 1;
+  }
+
   try {
     const { data, error } = await supabase
       .from('gallery_images')
