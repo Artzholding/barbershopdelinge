@@ -102,6 +102,14 @@ Check elke week je positie in Google voor deze zoektermen:
 - "fade knippen elst"
 - "baardverzorging elst"
 - "tattoo elst"
+- "tattoos elst"
+- "gezichtsbehandeling elst"
+- "gezichtsreiniging elst"
+- "waxen elst"
+- "massage elst"
+- "scheerwinkel elst"
+- "baard trimmen elst"
+- "herenkapsalon elst"
 
 ## Problemen?
 
