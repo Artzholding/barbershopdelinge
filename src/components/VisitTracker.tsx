@@ -30,6 +30,12 @@ export default function VisitTracker() {
     setIsSubmitting(true);
     setSuccess(false);
 
+    if (!supabase) {
+      alert('Database niet beschikbaar');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const { data: visit, error } = await supabase
         .from('customer_visits')
@@ -75,7 +81,7 @@ export default function VisitTracker() {
   };
 
   const sendEmailReminder = async () => {
-    if (!formData.customer_email || !visitId) return;
+    if (!supabase || !formData.customer_email || !visitId) return;
 
     try {
       await supabase.from('review_requests').insert({
@@ -91,7 +97,7 @@ export default function VisitTracker() {
   };
 
   const sendSMSReminder = async () => {
-    if (!formData.customer_phone || !visitId) return;
+    if (!supabase || !formData.customer_phone || !visitId) return;
 
     try {
       await supabase.from('review_requests').insert({

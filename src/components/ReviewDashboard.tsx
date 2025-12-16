@@ -53,6 +53,12 @@ export default function ReviewDashboard() {
   const loadDashboardData = async () => {
     setIsLoading(true);
     try {
+      if (!supabase) {
+        console.warn('Supabase not configured');
+        setIsLoading(false);
+        return;
+      }
+
       const { data: visitsData } = await supabase
         .from('customer_visits')
         .select('*')
@@ -98,6 +104,7 @@ export default function ReviewDashboard() {
   };
 
   const approveReview = async (reviewId: string) => {
+    if (!supabase) return;
     try {
       await supabase
         .from('reviews')
@@ -110,6 +117,7 @@ export default function ReviewDashboard() {
   };
 
   const deleteReview = async (reviewId: string) => {
+    if (!supabase) return;
     if (!confirm('Weet je zeker dat je deze review wilt verwijderen?')) return;
     try {
       await supabase.from('reviews').delete().eq('id', reviewId);

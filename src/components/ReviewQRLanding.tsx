@@ -24,6 +24,11 @@ export default function ReviewQRLanding() {
   const handleRatingSelect = async (selectedRating: number) => {
     setRating(selectedRating);
 
+    if (!supabase) {
+      setStep('details');
+      return;
+    }
+
     const requestId = crypto.randomUUID();
     await supabase.from('review_requests').insert({
       id: requestId,
@@ -59,6 +64,11 @@ export default function ReviewQRLanding() {
 
     if (reviewText.length < 10) {
       setError('Je review moet minimaal 10 karakters bevatten');
+      return;
+    }
+
+    if (!supabase) {
+      setError('Database niet beschikbaar');
       return;
     }
 
